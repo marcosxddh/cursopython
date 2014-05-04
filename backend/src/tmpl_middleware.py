@@ -5,6 +5,8 @@ import tmpl
 
 def execute(next_process, handler, dependencies, **kwargs):
     def write_tmpl(template_name, values=None):
+        dct={'_usuario_logado': dependencies.get('_usuario_logado')}
+        dct.update(values or {})
         values = values or {}
         return handler.response.write(tmpl.render(template_name, values))
 
